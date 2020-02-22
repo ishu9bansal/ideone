@@ -6,7 +6,7 @@ https://www.geeksforgeeks.org/burst-balloon-to-maximize-coins/
 
 https://ideone.com/g8RhXy
 
-# Explianation
+# Explanation
 
 After writing a recursive equation for the solution, it can be easily implemented via a dynamic programmnig approach.
 
