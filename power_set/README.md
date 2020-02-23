@@ -19,5 +19,5 @@ pushing its space complexity to be same as the time complexity that is exponenti
 
 Size of a power set is 2^n if size of set is n. Not only this, each element of power set will have elements in it, ranging from 0-n.
 We have to print the whole power set i.e., all the subsets of given set.
-Hence the problem is inherently exponential. Total n*2^(n-1)  numbers to be printed.
+Hence the problem is inherently exponential. Total n*2^(n-1)  numbers to be printed. [Why?](https://brilliant.org/discussions/thread/number-of-elements-in-a-flattened-power-set/)
 
