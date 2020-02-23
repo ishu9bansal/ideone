@@ -12,6 +12,6 @@ Iterator doesn't store any position information, it only points to the object of
 But it is an iterator at the end so it has some kind of position information because it can go to the next and previous elements of the set in constant time.
 There comes the part that it is a bi-directional iterator and not the random-access iterator.
 
-# Exection
+# Execution
 
 https://ideone.com/odvz6E
