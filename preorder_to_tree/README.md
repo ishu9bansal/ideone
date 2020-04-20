@@ -13,7 +13,8 @@ Mostly we have scrollable pages in vertical direction, hence we have more space 
 But as we know the height of the tree is `h ~ log(n)` while width of the tree `w ~ n/2`.  
 As the width increases exponentially faster than the height of the tree, it would be ideal to print trees from left to right.
 That is column wise. In the first column just the root node, in second column the nodes at level 1, in third column the nodes at level 2 and so on.  
-For a more general tree (with more than 2 children) we can just print the parent node at top and then the whole subtree below it, and next subtree below that one and so on. But for Binary trees we can do better. We can print the parent node in the middle of two subtrees. This gives a nice visual feel of the whole tree.
+For a more general tree (with more than 2 children) we can just print the parent node at top and then the whole subtree below it, and next subtree below that one and so on. But for Binary trees we can do better. We can print the parent node in the middle of two subtrees. This gives a nice visual feel of the whole tree.  
+One more advantage of printing BST in such a manner is that, all the nodes are printed in sorted manner (descending) from top to bottom. Each row will have just a single node and the column represent the depth of node.
 
 ### Preorder Traversal
 In a preorder traversal we traverse the root node, then left subtree in recursive manner, and then right subtree.
@@ -24,3 +25,9 @@ Equality case can be decided to place at any one side.
 
 ### Explaination
 From the structure of a BST and the way preorder traversal is done, it is not difficult to see that we can start inserting the nodes in the order of preorder traversal and it will create a BST that will give out the same preorder traversal. (Given that all entries of preorder traversal are unique)
+
+### Bonus
+For the testing of the code and sample run, we have created a method that gives the preorder traversal of a binary tree. It uses stack concepts for the implementation. This can also be done recursively in very few lines. But a recursive solution takes heap space.
+
+# Code
+https://ideone.com/2RJPNA
