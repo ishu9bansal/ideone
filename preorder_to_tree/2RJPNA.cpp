@@ -9,12 +9,15 @@ struct Node {
 	Node(int value=0, Node* left=NULL, Node* right=NULL) : x(value), l(left), r(right) {}
 };
 
-void print_binary_tree(vector<string> &v, Node* node, string s="", int depth=0){
-	// can be optimized better, taking up too much heap space
+void print_binary_tree(vector<string> &v, Node* node, int depth=0){
 	if(!node)	return;
-	print_binary_tree(v, node->r, s+"|\t" , depth+1);
-	v.push_back(s+to_string(node->x));
-	print_binary_tree(v, node->l, s+"|\t", depth+1);
+	print_binary_tree(v, node->r, depth+1);
+	string str = "";
+	for(int i=0; i<depth; i++)
+		str += "|\t";
+	str += to_string(node->x);
+	v.push_back(str);
+	print_binary_tree(v, node->l, depth+1);
 	return;
 }
 void insert(Node* &root, Node* node){
