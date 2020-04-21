@@ -9,15 +9,14 @@ struct Node {
 	Node(int value=0, Node* left=NULL, Node* right=NULL) : x(value), l(left), r(right) {}
 };
 
-void print_binary_tree(vector<string> &v, Node* node, int depth=0){
+void print_binary_tree(Node* node, int depth=0){
 	if(!node)	return;
-	print_binary_tree(v, node->r, depth+1);
+	print_binary_tree(node->r, depth+1);
 	string str = "";
 	for(int i=0; i<depth; i++)
-		str += "|\t";
-	str += to_string(node->x);
-	v.push_back(str);
-	print_binary_tree(v, node->l, depth+1);
+		cout<<"|\t";
+	cout<<node->x<<endl;
+	print_binary_tree(node->l, depth+1);
 	return;
 }
 void insert(Node* &root, Node* node){
@@ -49,41 +48,30 @@ void random_run(int n = 100){
 	Node* root = NULL;
 	while(n--)
         insert(root,new Node(rand()%1000));
-	vector<string> s;
-	s.clear();
-	print_binary_tree(s,root);
 	cout<<"Original Tree"<<endl;
-	for(string &str: s)
-		cout<<str<<endl;
+	print_binary_tree(root);
 	cout<<endl;
 	vector<int> preorder = bst_to_preorder(root);
 	cout<<"Preorder Traversal"<<endl;
 	for(int x: preorder)
 		cout<<x<<' ';
-	cout<<endl;
+	cout<<endl<<endl;
 	root = preorderd_to_bst(preorder);
-	s.clear();
-	print_binary_tree(s,root);
 	cout<<"Answer Tree"<<endl;
-	for(string &str: s)
-		cout<<str<<endl;
+	print_binary_tree(root);
 	cout<<endl;
 }
 int main() {
 	int t,n,x;
 	Node* root;
 	vector<int> v;
-	vector<string> s;
 	cin>>t;
 	while(t--){
 		cin>>n;
 		v.clear();
 		while(n--&&cin>>x)	v.push_back(x);
 		root = preorderd_to_bst(v);
-		s.clear();
-		print_binary_tree(s,root);
-		for(string &str: s)
-			cout<<str<<endl;
+		print_binary_tree(root);
 		cout<<endl;
 	}
 	random_run();
