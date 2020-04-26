@@ -18,7 +18,12 @@ Uniq chars in text: `q`
     - Time Complexity: O(`q`)
     - Space used for table: O(`q`)
     - Reccursive stack space: O(`log(q)`), maximum depth of the tree ~ 9-10
-
+- Encoding:
+    - Time Complexity: O(`n`), read every char and replace it with corresponding bitpath
+    - No extra space required than the table used for encoding
+- Decoding:
+    - Time Complexity: O(`n`), traverse the tree one step over each bit in the encoding.
+    - No extra space required than the tree used for decoding
 
 # Code
 https://ideone.com/7BBdMz
