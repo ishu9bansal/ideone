@@ -46,6 +46,12 @@ unordered_map<char,vector<bool>> huffman_table(Node* h){
 	huffman_helper(t,h,vector<bool>());
 	return t;
 }
+void print(char c){
+	if(c=='\s')	cout<<"\\s";
+	else if(c=='\t')	cout<<"\\t";
+	else if(c=='\n')	cout<<"\\n";
+	else cout<<c;
+}
 void print_binary_tree(Node* node, int depth=0, bool leaf_check=false){
 	// this will print a leaf node differently if the leaf_check is set to true
 	// print format for leaf can be defined in else block below.
@@ -54,8 +60,9 @@ void print_binary_tree(Node* node, int depth=0, bool leaf_check=false){
 	string str = "";
 	for(int i=0; i<depth; i++)
 		cout<<"|\t";
-	if(!leaf_check||node->l||node->r)	cout<<node->x<<endl;
-	else	cout<<char(node->x)<<endl;	// print in this format if it's a leaf
+	if(!leaf_check||node->l||node->r)	cout<<node->x;
+	else	print(node->x);	// print in this format if it's a leaf
+	cout<<endl;
 	print_binary_tree(node->l, depth+1, leaf_check);
 	return;
 }
@@ -97,7 +104,8 @@ int main() {
 	unordered_map<char,vector<bool>> t = huffman_table(h);
 	int sum = 0;
 	for(auto p: t){
-		cout<<p.first<<'\t';
+		print(p.first);
+		cout<<'\t';
 		print(p.second);
 		sum += p.second.size();
 	}
