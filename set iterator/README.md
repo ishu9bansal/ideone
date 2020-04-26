@@ -4,8 +4,10 @@ When we ```find()``` an element in a set, the iterator for the set which is retu
 
 That is when a new object is added in the set, will the iterator be pointing to the same object, or is it going to change due to rearrangement of the elements of the set?
 
-# Answer
+# Short Answer
+It points to the object, and not the position.
 
+# Long Answer
 Question becomes irrelavent because, from the iterator we cannot know the position of the object in the set, i.e., syntax ```it-2``` or ```it-h.begin()``` doesn't work.
 Iterator doesn't store any position information, it only points to the object of the set directly.
 
