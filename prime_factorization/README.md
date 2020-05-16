@@ -19,16 +19,21 @@ hence we only need to precalculate all the primes upto `2^16` only.
 - Precomputation
     - Time: `O(n*log(n)) = O(sqrt(N)*log(N))`    
     because `sum_upto_sqrt_n(n/i-i) ~ (n*log(n) - n)/2`
-    - Space: `O(p) = O(n/log(n))`    
+    - Space: `O(p) ~ O(n/log(n))`    
     because of prime number theorem    
 - Factorization
-    - Time: `O(p*log(N))`
+    - Time: `O(p*log(N)) ~ O(n) = O(sqrt(N))`
     Upper bound. Maximum number of factors of a number = `log(N)`. Length of the array = `p`.
     - Extra Space: `O(1)`  Only constant space is used, other than the space to store factorization itself.    
 - Legend
     - `N`: maximum input number
     - `n`: `sqrt(N)`
     - `p`: number of primes found less than `n ~ n/log(n)`
+- Bonus    
+  - Factorization Time complexity tight bound: `O(p) ~ O(n/log(n)) = O(sqrt(N)/log(N))`    
+  - Some more tight bound on factorization part, reveals that on an average square or cube of the calculated primes, goes off the ceiling. Only a few dozen of initial numbers is more than 5th or 6th power. Hence the total comparisons can be as less as `2*p`
+  - Hence making the overall time complexity for factorization linear in `p`
+  - analysis can be found here https://ideone.com/kJzElq
 # Bonus
 Natural way of writing a number in it's constituent parts. This reveals everything about that number.
 
