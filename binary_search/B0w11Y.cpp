@@ -20,11 +20,11 @@ struct less_than_equal_k {
 };
 template <class T, class Comp>
 int binarySearch(int l, int r, Comp comp, T& t){
-	int m = (l+r)/2;
+	int m = l+(r-l)/2;
 	while(l<r){
 		if(comp(m,t))	l = m+1;
 		else	r = m;
-		m = (l+r)/2;
+		m = l+(r-l)/2;
 	}
 	return m;
 }
