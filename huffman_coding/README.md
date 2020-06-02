@@ -27,3 +27,8 @@ Uniq chars in text: `q`
 
 # Code
 https://ideone.com/7BBdMz
+
+Using queue based implementation for creating the huffman tree. This minimise the variance in the final coding.
+We will use two queues, one for storing leaves and other for storing internal nodes. We will generate the internal node by taking sum of the two minimum nodes from both the queues. We will use the node from leaves queue if there is a tie, that will ensure that the length of the final code for each leaf is minimum. Hence minimizing the variance.
+
+Queue based implementation: https://ideone.com/AdUnrr
