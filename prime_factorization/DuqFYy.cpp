@@ -26,9 +26,10 @@ vector<vector<int>> primeFactorization(unsigned int n){
 	int c=0;
 	int l=prime.size();
 	int p;
+	int s = sqrt(n);
 	while(n>1){
-		while(i<l&&prime[i]<=sqrt(n)&&n%prime[i])	i++;
-		if(i==l||prime[i]>sqrt(n))	p = n;
+		while(i<l&&prime[i]<=s&&n%prime[i])	i++;
+		if(i==l||prime[i]>s)	p = n;
 		else	p = prime[i];
 		v[0].push_back(p);
 		c=0;
@@ -37,6 +38,7 @@ vector<vector<int>> primeFactorization(unsigned int n){
 			c++;
 		}
 		v[1].push_back(c);
+		s = sqrt(n);
 	}
 	return v;
 }
