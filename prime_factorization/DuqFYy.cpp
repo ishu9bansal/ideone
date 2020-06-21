@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <map>
 #include <algorithm>
 #include <sstream>
 #include <cmath>
@@ -8,20 +9,19 @@ int N=65537;
 vector<bool> a(N,false);
 vector<int> prime;
 
-string getPrint(const vector<vector<int>> &v){
+string getPrint(const map<int,int> &v){
 	string s;
 	stringstream ss;
-	for(int i=0; i<v[0].size(); i++){
-		if(i)	ss<<'*';
-		if(v[1][i]==1)	ss<<v[0][i];
-		else	ss<<'('<<v[0][i]<<'^'<<v[1][i]<<')';
-	}
+	for(auto p: v)
+		if(p.second==1)	ss<<p.first<<'*';
+		else	ss<<'('<<p.first<<'^'<<p.second<<')'<<'*';
 	ss>>s;
+	s.pop_back();
 	return s;
 }
 
-vector<vector<int>> primeFactorization(unsigned int n){
-	vector<vector<int>> v(2,vector<int>());
+map<int,int> primeFactorization(unsigned int n){
+	map<int,int> v;
 	int i=0;
 	int c=0;
 	int l=prime.size();
@@ -31,13 +31,12 @@ vector<vector<int>> primeFactorization(unsigned int n){
 		while(i<l&&prime[i]<=s&&n%prime[i])	i++;
 		if(i==l||prime[i]>s)	p = n;
 		else	p = prime[i];
-		v[0].push_back(p);
 		c=0;
 		while(n%p==0){
 			n /= p;
 			c++;
 		}
-		v[1].push_back(c);
+		v[p] = c;
 		s = sqrt(n);
 	}
 	return v;
