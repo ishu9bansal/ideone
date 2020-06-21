@@ -27,8 +27,8 @@ vector<vector<int>> primeFactorization(unsigned int n){
 	int l=prime.size();
 	int p;
 	while(n>1){
-		while(i<l&&n%prime[i])	i++;
-		if(i==l)	p = n;
+		while(i<l&&prime[i]<=sqrt(n)&&n%prime[i])	i++;
+		if(i==l||prime[i]>sqrt(n))	p = n;
 		else	p = prime[i];
 		v[0].push_back(p);
 		c=0;
