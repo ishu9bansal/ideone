@@ -6,8 +6,8 @@ Represent the factorization in the natural format.
 It uses seive to calculate all the primes upto `n = 2^16` (`p = 6542` primes in this range)
 then uses those primes to factorize the all the numbers upto `N = 2^32`.
 
-Prime factorization of a non prime number `k` will contain factors upto `sqrt(k)`,
-hence we only need to precalculate all the primes upto `2^16` only.
+Prime factorization of a non prime number `k` will contain at least one factor less than `sqrt(k)`, otherwise `k` is prime.
+Hence we only need to precalculate all the primes upto `2^16` only, and we can find all other factors recursively.
 
 - Once we got the all the primes, we can just iterate over all the primes.
 - Once we find a factor of the number we can reduce the search space substantially.
