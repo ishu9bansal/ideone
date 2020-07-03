@@ -45,3 +45,7 @@ Here
 
 # Code
 https://ideone.com/I9WNY7
+
+# Usage
+
+https://leetcode.com/submissions/detail/361593754/?from=/explore/featured/card/july-leetcoding-challenge/544/week-1-july-1st-july-7th/3379/
