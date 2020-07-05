@@ -30,6 +30,10 @@ __Legend__
 # Code
 https://ideone.com/dIYSUb
 
+to cater range updates as well, we can use two trees smartly as depicted here
+
+https://ideone.com/PdaqdH
+
 # Usage
  - https://leetcode.com/problems/count-of-smaller-numbers-after-self/
  - https://leetcode.com/submissions/detail/350260092/
