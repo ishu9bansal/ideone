@@ -3,14 +3,15 @@
 #include <map>
 #include <climits>
 using namespace std;
+template <class T>
 class FenwickTree{
 private:
-    unordered_map<long long, int> v;
+    unordered_map<long long, T> v;
     long long ma;
     long long mi;
 public:
-    FenwickTree(int max = INT_MAX, int min = 0) : ma(max), mi(min-1L) {}
-    void set(long long i, int d){
+    FenwickTree(int max = INT_MAX, int min = 1) : ma(max), mi(min-1L) {}
+    void set(long long i, T d){
         if(i<=mi||i>ma) throw "bad_allocation";
         i -= mi;
         while(i<=ma-mi){
@@ -18,11 +19,11 @@ public:
             i += i&-i;
         }
     }
-    int get(long long i){
+    T get(long long i){
         if(i<=mi)   return 0;
         if(i>ma)    i = ma;
         i -= mi;
-        int x = 0;
+        T x = NULL;
         while(i){
             x += v[i];
             i -= i&-i;
@@ -49,7 +50,7 @@ int main() {
 	int n,q,p;
 	cin>>n>>q>>p;
 	p %= 101;	// p: should be a percentage
-	FenwickTree ft(n,1);
+	FenwickTree<int> ft(n,1);
 	PrefixSum ps;
 	int i,d;
 	while(q--){
