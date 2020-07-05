@@ -29,3 +29,8 @@ __Legend__
 
 # Code
 https://ideone.com/dIYSUb
+
+# Usage
+https://leetcode.com/problems/count-of-smaller-numbers-after-self/
+https://leetcode.com/submissions/detail/350260092/
+https://leetcode.com/submissions/detail/350897497/
