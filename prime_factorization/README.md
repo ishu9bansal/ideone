@@ -39,3 +39,6 @@ Natural way of writing a number in it's constituent parts. This reveals everythi
 
 # Link
 https://ideone.com/DuqFYy
+
+# Usage
+https://leetcode.com/submissions/detail/388808430/?from=/explore/featured/card/august-leetcoding-challenge/553/week-5-august-29th-august-31st/3442/
