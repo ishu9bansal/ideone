@@ -1,4 +1,5 @@
 ---
+publish: true
 permalink: inverse_modulo
 title: Inverse Modulo
 code:

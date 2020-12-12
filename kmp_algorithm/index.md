@@ -1,4 +1,5 @@
 ---
+publish: true
 permalink: kmp_algorithm
 title: KMP Algorithm
 code:
