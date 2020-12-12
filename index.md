@@ -5,5 +5,9 @@ Some usefull pieces of code, with problem statement and explanation of the solut
 # Explore
 
 {% for code in site.codes %}
- - [{{ code.title | humanize }}]({{code.folder}}/README.md)
+ - [{{ code.title | humanize }}]({{code.folder}}/README)
+{% endfor %}
+
+{% for code in site.pages %}
+ - [{{ code.permalink | humanize }}](page.permalink)
 {% endfor %}
