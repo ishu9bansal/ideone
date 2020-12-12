@@ -1,7 +1,7 @@
 
 # Code
 ```cpp
-{% include_relative {{ page.code }}.cpp %}
+xyz
 ```
 
 # [Ideone it!](https://ideone.com/{{ page.code }})
