@@ -1,3 +1,5 @@
+---
+---
 # Test File
 
 Link this file through the main file to get a priview of this one.
@@ -10,3 +12,4 @@ int gcd(int a, int b){
     return gcd(b%a,a);
 }
 ```
+{% include test.cpp %}
