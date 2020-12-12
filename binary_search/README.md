@@ -1,3 +1,6 @@
+---
+permalink: binary_search
+---
 # Binary Search
 No more information is required. The name tells everything.
 
@@ -8,8 +11,9 @@ No more information is required. The name tells everything.
 # V2 features
 - flexible usage, any type of binary search can directly use the function. Just need to provide comparison function
 
-# Live Code
-https://ideone.com/pJwIFt
+# Code
+{% include_relative pJwIFt.cpp %}
+## [Ideone it!](https://ideone.com/pJwIFt)
 
-v2:
-https://ideone.com/B0w11Y
+{% include_relative B0w11Y.cpp %}
+## [Ideone it!](https://ideone.com/B0w11Y)
