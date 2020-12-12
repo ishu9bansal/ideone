@@ -12,8 +12,15 @@ No more information is required. The name tells everything.
 - flexible usage, any type of binary search can directly use the function. Just need to provide comparison function
 
 # Code
+```cpp
 {% include_relative pJwIFt.cpp %}
+```
 ## [Ideone it!](https://ideone.com/pJwIFt)
 
+
+
+
+```cpp
 {% include_relative B0w11Y.cpp %}
+```
 ## [Ideone it!](https://ideone.com/B0w11Y)
