@@ -14,7 +14,7 @@ usage:
 
 # [Ideone it!](https://ideone.com/{{ page.code }})
 
-{% for x in usage %}
+{% for x in page.usage %}
 {% if forloop.first %}
 # Usage
 {% endif %}
