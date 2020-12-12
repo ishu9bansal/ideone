@@ -1,4 +1,5 @@
 ---
+publish: true
 permalink: direction_iterator
 title: Direction Iterator
 code:
