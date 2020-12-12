@@ -1,12 +1,11 @@
 ---
 publish: true
-permalink: burst_baloons
-title: Burst Baloons
+permalink: lexicographic_iterator
+title: Lexicographic Iterator
 code:
-  - g8RhXy
+  - hqakFi
 
 ---
-
 {% include_relative README.md %}
 # Code
 
@@ -23,4 +22,3 @@ code:
 {% endif %}
  - [Usage {{ forloop.index }}]({{x}})
 {% endfor %}
-

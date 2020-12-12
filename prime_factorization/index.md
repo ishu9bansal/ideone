@@ -1,12 +1,13 @@
 ---
 publish: true
-permalink: burst_baloons
-title: Burst Baloons
+permalink: prime_factorization
+title: Prime Factorization
 code:
-  - g8RhXy
+  - DuqFYy
+usage:
+  - https://leetcode.com/submissions/detail/388808430/
 
 ---
-
 {% include_relative README.md %}
 # Code
 
@@ -23,4 +24,3 @@ code:
 {% endif %}
  - [Usage {{ forloop.index }}]({{x}})
 {% endfor %}
-

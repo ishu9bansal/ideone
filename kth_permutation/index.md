@@ -1,12 +1,11 @@
 ---
 publish: true
-permalink: burst_baloons
-title: Burst Baloons
+permalink: kth_permutation
+title: kth Permutation
 code:
-  - g8RhXy
+  - 1rlVkm
 
 ---
-
 {% include_relative README.md %}
 # Code
 
@@ -23,4 +22,3 @@ code:
 {% endif %}
  - [Usage {{ forloop.index }}]({{x}})
 {% endfor %}
-

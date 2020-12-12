@@ -1,12 +1,11 @@
 ---
 publish: true
-permalink: burst_baloons
-title: Burst Baloons
+permalink: power_set
+title: Power Set
 code:
-  - g8RhXy
+  - DXm5uR
 
 ---
-
 {% include_relative README.md %}
 # Code
 
@@ -23,4 +22,3 @@ code:
 {% endif %}
  - [Usage {{ forloop.index }}]({{x}})
 {% endfor %}
-
