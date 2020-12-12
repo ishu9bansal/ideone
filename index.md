@@ -8,6 +8,9 @@ Some usefull pieces of code, with problem statement and explanation of the solut
 [Test Broken file](broken.md)
 [Test Broken html](broken.html)
 
+# Theme
+{{ site.theme }}
+
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
