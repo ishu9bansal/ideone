@@ -4,6 +4,8 @@ title: Binary Search
 code:
   - pJwIFt
   - B0w11Y
+usage:
+  - https://leetcode.com/submissions/detail/417413492/
 
 ---
 {% include_relative README.md %}
