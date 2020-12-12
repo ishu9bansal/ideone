@@ -14,11 +14,9 @@ usage:
 
 # [Ideone it!](https://ideone.com/{{ page.code }})
 
- - [Usage {{ 1 }}]({{usage[0]}})
-{% assign n = usage.size %}
-{% if n > 0 %}
+{% for x in usage %}
+{% if forloop.first %}
 # Usage
-{% for i in (1..n) %}
- - [Usage {{ i }}]({{usage[i-1]}})
-{% endfor %}
 {% endif %}
+ - [Usage {{ forloop.index }}]({{x}})
+{% endfor %}
