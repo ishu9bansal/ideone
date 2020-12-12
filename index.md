@@ -5,5 +5,7 @@ Some usefull pieces of code, with problem statement and explanation of the solut
 # Pages
 {% for page in site.pages %}
 {% assign default_title = page.permalink | split: "_" | join: " " | capitalize %}
+{% if page.publish %}
  - [{{ page.title | default: default_title }}]({{ page.permalink }})
+{% endif %}
 {% endfor %}
