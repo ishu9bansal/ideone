@@ -5,7 +5,7 @@ usage:
   - https://leetcode.com/submissions/detail/361593754/
 
 ---
-{% assign page.title = page.permalink | split: "_" | join: " " | capitalize %}
+{% page.title = page.permalink | split: "_" | join: " " | capitalize %}
 {% include_relative README.md %}
 # Code
 ```cpp
