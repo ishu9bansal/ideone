@@ -1,7 +1,6 @@
 ---
 permalink: arbitrary_deep_recursive_output
 code: I9WNY7
-title: permalink.split("_")
 usage:
   - https://leetcode.com/submissions/detail/361593754/?from=/explore/featured/card/july-leetcoding-challenge/544/week-1-july-1st-july-7th/3379/
 
@@ -15,6 +14,7 @@ usage:
 
 # [Ideone it!](https://ideone.com/{{ page.code }})
 
+ - [Usage {{ 1 }}]({{usage[0]}})
 {% assign n = usage.size %}
 {% if n > 0 %}
 # Usage
