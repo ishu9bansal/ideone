@@ -1,5 +1,6 @@
 ---
-code: dIZtHl
+permalink: 12_ball_puzzle
+title: 12 Ball Puzzle
 ---
 # Problem
 You are given 12 identical balls, one of which is slightly heavier or lighter than the rest. (All other are of exactly each weights)
