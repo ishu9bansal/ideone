@@ -1,5 +1,6 @@
 ---
 permalink: binary_search
+title: Binary Search
 ---
 # Binary Search
 No more information is required. The name tells everything.
