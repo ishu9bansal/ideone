@@ -8,6 +8,7 @@ Some usefull pieces of code, with problem statement and explanation of the solut
  - [{{ code.title | humanize }}]({{code.folder}}/README)
 {% endfor %}
 
-{% for code in site.pages %}
- - [{{ code.permalink | humanize }}](page.permalink)
+# Pages
+{% for page in site.pages %}
+ - [{{ page.title | default: page.permalink }}]({{ page.permalink }})
 {% endfor %}
