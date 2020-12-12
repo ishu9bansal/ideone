@@ -1,5 +1,8 @@
 theme: jekyll-theme-hacker
 codes:
-  - 12_ball_puzzle
-  - binary_search
-  - fenwick_tree
+  - title: 12_ball_puzzle
+    folder: 12_ball_puzzle
+  - title: binary_search
+    folder: binary_search
+  - title: fenwick_tree
+    folder: fenwick_tree
