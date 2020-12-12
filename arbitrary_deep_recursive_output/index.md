@@ -6,7 +6,7 @@ code: I9WNY7
 {% include_relative README.md %}
 # Code
 ```cpp
-{% include_relative I9WNY7.cpp %}
+{% include_relative {{ page.code }}.cpp %}
 ```
 
-# [Ideone it!](https://ideone.com/I9WNY7)
+# [Ideone it!](https://ideone.com/{{ page.code }})
