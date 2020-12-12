@@ -1,12 +1,17 @@
 ---
 publish: true
-permalink: burst_baloons
-title: Burst Baloons
+permalink: fenwick_tree
+title: Fenwick Tree
 code:
-  - g8RhXy
+  - dIYSUb
+  - PdaqdH
+usage:
+  - https://leetcode.com/problems/count-of-smaller-numbers-after-self/
+  - https://leetcode.com/submissions/detail/350260092/
+  - https://leetcode.com/submissions/detail/350897497/
+  - https://leetcode.com/submissions/detail/389860976/
 
 ---
-
 {% include_relative README.md %}
 # Code
 
@@ -23,4 +28,3 @@ code:
 {% endif %}
  - [Usage {{ forloop.index }}]({{x}})
 {% endfor %}
-

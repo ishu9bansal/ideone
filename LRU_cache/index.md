@@ -1,12 +1,11 @@
 ---
 publish: true
-permalink: burst_baloons
-title: Burst Baloons
+permalink: LRU_cache
+title: LRU Cache
 code:
-  - g8RhXy
+  - bCFKbb
 
 ---
-
 {% include_relative README.md %}
 # Code
 
@@ -23,4 +22,3 @@ code:
 {% endif %}
  - [Usage {{ forloop.index }}]({{x}})
 {% endfor %}
-

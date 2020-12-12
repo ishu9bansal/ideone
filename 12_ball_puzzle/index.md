@@ -1,12 +1,11 @@
 ---
 publish: true
-permalink: burst_baloons
-title: Burst Baloons
+permalink: 12_ball_puzzle
+title: 12 Ball Puzzle
 code:
-  - g8RhXy
+  - dIZtHl
 
 ---
-
 {% include_relative README.md %}
 # Code
 
@@ -23,4 +22,3 @@ code:
 {% endif %}
  - [Usage {{ forloop.index }}]({{x}})
 {% endfor %}
-

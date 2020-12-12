@@ -1,12 +1,12 @@
 ---
 publish: true
-permalink: burst_baloons
-title: Burst Baloons
+permalink: huffman_coding
+title: Huffman Coding
 code:
-  - g8RhXy
+  - 7BBdMz
+  - AdUnrr
 
 ---
-
 {% include_relative README.md %}
 # Code
 
@@ -23,4 +23,3 @@ code:
 {% endif %}
  - [Usage {{ forloop.index }}]({{x}})
 {% endfor %}
-

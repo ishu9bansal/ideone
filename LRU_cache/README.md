@@ -1,7 +1,3 @@
----
-permalink: LRU_cache
-title: LRU Cache
----
 # Description
 Implement LRU cache (Least Recenetly Used).
 
@@ -32,9 +28,3 @@ Time Complexity: O(`1`)
 Space Complexity: O(`n`)  
 `n`: capacity of the cache
 
-# Code
-```cpp
-{% include_relative bCFKbb.cpp %}
-```
-
-# [Ideone it!](https://ideone.com/bCFKbb)
