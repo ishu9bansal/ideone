@@ -1,3 +1,6 @@
+---
+code: dIZtHl
+---
 # Problem
 You are given 12 identical balls, one of which is slightly heavier or lighter than the rest. (All other are of exactly each weights)
 
@@ -19,4 +22,9 @@ We should also build a few things bottom top. Keep your answers ready for small 
 # Algorithm
 The one algorithm I found is given shape in this cpp code. It also tests all the 12*2 = 24 use cases and prints the result for those.
 
-https://ideone.com/dIZtHl
+# Code
+```cpp
+{% include_relative dIZtHl.cpp %}
+```
+
+# [Ideone it!](https://ideone.com/dIZtHl)
