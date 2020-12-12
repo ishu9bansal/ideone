@@ -15,4 +15,4 @@ Want to contribute some code? Raise a pull request on this [repo](https://github
 
 Pick any of the [issues](https://github.com/ishu9bansal/ideone/issues) listed in the repo or add some new code.
 
-If you have some suggestions or just want to chat :bowtie: [mail me](mailto:ishubansal1400@gmail.com)
+If you have some suggestions or just want to chat :D mail me @ ishubansal1400@gmail.com
