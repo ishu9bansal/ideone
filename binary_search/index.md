@@ -1,4 +1,5 @@
 ---
+publish: true
 permalink: binary_search
 title: Binary Search
 code:
