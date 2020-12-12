@@ -12,4 +12,4 @@ int gcd(int a, int b){
     return gcd(b%a,a);
 }
 ```
-{% test.cpp %}
+{% include_relative test.cpp %}
