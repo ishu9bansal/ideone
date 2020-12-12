@@ -4,5 +4,5 @@ Some usefull pieces of code, with problem statement and explanation of the solut
 
 # Pages
 {% for page in site.pages %}
- - [{{ page.title | default: page.permalink }}]({{ page.permalink }})
+ - [{{ page.title | default: page.permalink | split: "_" | join: " " | capitalize }}]({{ page.permalink }})
 {% endfor %}
