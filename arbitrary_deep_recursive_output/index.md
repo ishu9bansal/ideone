@@ -1,4 +1,5 @@
 ---
+publish: true
 permalink: arbitrary_deep_recursive_output
 code: I9WNY7
 usage:
