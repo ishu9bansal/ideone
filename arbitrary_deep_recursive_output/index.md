@@ -2,7 +2,7 @@
 permalink: arbitrary_deep_recursive_output
 code: I9WNY7
 usage:
-  - https://leetcode.com/submissions/detail/361593754/?from=/explore/featured/card/july-leetcoding-challenge/544/week-1-july-1st-july-7th/3379/
+  - https://leetcode.com/submissions/detail/361593754/
 
 ---
 {% assign page.title = page.permalink | split: "_" | join: " " | capitalize %}
