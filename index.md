@@ -1,8 +1,6 @@
-## Welcome to GitHub Pages
+## Welcome
 
-You can use the [editor on GitHub](https://github.com/ishu9bansal/ideone/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Some usefull pieces of code, with problem statement and explanation of the solution. Also there is complexity analysis for the solutions. Some of the codes are usable in many kind of other problems. These can be used directly or indirectly to solve many problems.
 
 ### Markdown
 
