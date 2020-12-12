@@ -1,4 +1,4 @@
-{% include_relative README.md %}
+{% include_relative {{ page.title}}/README.md %}
 # Code
 ```cpp
 {% include_relative {{ page.code }}.cpp %}
