@@ -15,3 +15,7 @@ The method to set a new link also uses get method internally, so creating the gr
 
 # Code
 https://ideone.com/xF6FnB
+
+# Usage
+https://ideone.com/5sK28J
+https://leetcode.com/submissions/detail/388808430/
