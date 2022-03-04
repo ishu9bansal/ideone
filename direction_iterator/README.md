@@ -12,3 +12,6 @@ Instead of it if we generate the difference programatically we can write the cod
 
 # Code
 https://ideone.com/CGUrP8
+
+# P.S.
+8 directional trick: {0,-1,-1,0,1,-1,1,1,0}
