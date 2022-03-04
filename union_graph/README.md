@@ -15,6 +15,8 @@ The method to set a new link also uses get method internally, so creating the gr
 
 # Code
 https://ideone.com/xF6FnB
+v2
+https://ideone.com/aAqjg3
 
 # Usage
 https://ideone.com/5sK28J
