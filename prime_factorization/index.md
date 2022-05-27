@@ -6,6 +6,7 @@ code:
   - DuqFYy
 usage:
   - https://leetcode.com/submissions/detail/388808430/
+  - https://leetcode.com/submissions/detail/708379160/
 
 ---
 {% include_relative README.md %}
