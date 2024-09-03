@@ -9,10 +9,10 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/../.local/${fileBasenameNoExtension}"
+                "${fileDirname}/../.local/${relativeFileDirname}/${fileBasenameNoExtension}"
             ],
             "options": {
-                "cwd": "${fileDirname}/../.local"
+                "cwd": "${fileDirname}/../.local/${relativeFileDirname}"
             },
             "problemMatcher": [
                 "$gcc"

@@ -149,9 +149,14 @@ T input(ifstream &fs){
     return inputImpl(fs, static_cast<T*>(0));
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+    string relativePath = "";
+    if(argc>1){
+        relativePath = argv[1];
+    }
+    string inputFilePath = relativePath + "/input.in";
     ifstream inputFile;
-    inputFile.open("../graph_path_algo/input.in");  // relative to the build location
+    inputFile.open(inputFilePath);  // relative to the build location
     vector<vector<vector<int> > > inputs = input<vector<vector<vector<int> > > >(inputFile);
     vector<int> output;
     for(auto &v: inputs){
