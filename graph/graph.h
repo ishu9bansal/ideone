@@ -1,6 +1,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <unordered_set>
+#include <queue>
 #include <climits>
 #include <vector>
 
@@ -57,6 +58,32 @@ private:
         while(n--)
             if(!bellmanFordSubRoutine(dist))
                 break;
+        return dist;
+    }
+    unordered_map<int, int> dijkstraImpl(int s) const {
+        unordered_map<int,unordered_map<int,int> > mat = adjacencyMatrixImpl(0);
+        unordered_map<int, int> dist;
+        priority_queue<pair<int,int> > q;
+        q.push(make_pair(0,s));
+        pair<int,int> p;
+        int x,y, d, w;
+        while(dist.size()<vertices.size()){
+            while(q.size() && dist.find(q.top().second)!=dist.end()){
+                q.pop();
+            }
+            if(q.empty())   break;
+            p = q.top();
+            q.pop();
+            x = p.second;
+            d = -p.first;   // reverse negation
+            dist[x] = d;
+            for(auto edge: mat[x]){
+                y = edge.first;
+                if(dist.find(y)!=dist.end())    continue;
+                w = -d-edge.second; // negation for min instead of max in priority queue
+                q.push(make_pair(w,y));
+            }
+        }
         return dist;
     }
     unordered_map<int,unordered_map<int,int> > adjacencyMatrixImpl(int selfAdj) const {
@@ -141,6 +168,11 @@ public:
     vector<int> bellmanFord(int s, bool &hasNegativeCycle) const {
         unordered_map<int, int> dist = bellmanFordImpl(s);
         hasNegativeCycle = bellmanFordSubRoutine(dist);
+        return serialize(dist, INF);
+    }
+
+    vector<int> dijkstra(int s) const {
+        unordered_map<int, int> dist = dijkstraImpl(s);
         return serialize(dist, INF);
     }
 };

@@ -57,13 +57,17 @@ int main(int argc, char* argv[]) {
     string outputFilePath = relativePath + "/output.out";
     ifstream inputFile;
     ofstream outputFile;
-    inputFile.open(inputFilePath);  // relative to the build location
-    outputFile.open(outputFilePath);
+
+    inputFile.open(inputFilePath);
     vector<vector<vector<int> > > inputs = input<vector<vector<vector<int> > > >(inputFile);
+    inputFile.close();
+
+    outputFile.open(outputFilePath);
     vector<int> output;
     for(auto &v: inputs){
         output = f(v);
         printVec(output, outputFile);
     }
+    outputFile.close();
     return 0;
 }

@@ -14,6 +14,14 @@ public:
     }
 };
 
+class DijkstraSubRoutine: public SolutionSubRoutine {
+public:
+    DijkstraSubRoutine() {}
+    vector<int> ditancesFromSource(int source, const Graph &graph) override {
+        return graph.dijkstra(source);
+    }
+};
+
 class BellmanFordSubRoutine: public SolutionSubRoutine {
 public:
     BellmanFordSubRoutine() {}
@@ -57,5 +65,6 @@ vector<int> fImpl(vector<vector<int> > &v, SolutionSubRoutine *routine) {
 
 vector<int> f(vector<vector<int> > &v) {
     // return fImpl(v, new BellmanFordSubRoutine());
-    return fImpl(v, new FloyedWarshallSubRoutine());
+    // return fImpl(v, new FloyedWarshallSubRoutine());
+    return fImpl(v, new DijkstraSubRoutine());
 }
