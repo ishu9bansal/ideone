@@ -12,26 +12,28 @@ private:
     // TODO: relax this constraint of int nodes
     // Let the graph itself store the vertex properties
     // TODO: extend the distance to use any data type and a custom distance function
-    unordered_map<int,unordered_map<int,long long> > adjacencyList;
+    unordered_map<int,unordered_map<int,int> > adjacencyList;
     unordered_set<int> vertices;
     bool isDirected;
     int V;
-    int addEdgeWeights(int a, int b) {
-        if(a>=INF)  return INF;
-        if(b>=INF)  return INF;
-        return a+b;
-    }
-    void floydWarshallImpl(vector<vector<int> > &v) {
-        int n = v.size();
-        for(int k=0; k<n; k++){
-            for(int j=0; j<n; j++){
-                for(int i=0; i<n; i++){
-                    v[i][j] = min(v[i][j], addEdgeWeights(v[i][k],v[k][j]));
+    void floydWarshallImpl(unordered_map<int,unordered_map<int,int> > &mat) const {
+        int n = vertices.size();
+        int d;
+        for(int k: vertices){
+            for(int j: vertices){
+                for(int i: vertices){
+                    if(mat[i].find(k)!=mat[i].end() && mat[k].find(j)!=mat[k].end()){
+                        d = mat[i][k] + mat[k][j];
+                        if(mat[i].find(j)==mat[i].end() || mat[i][j] > d){
+                            mat[i][j] = d;
+                        }
+                    }
+                    
                 }
             }
         }
     }
-    bool bellmanFordSubRoutine(unordered_map<int, int> &dist) {
+    bool bellmanFordSubRoutine(unordered_map<int, int> &dist) const {
         bool changeHappened = false;
         int i, j, d;
         for(auto &h: adjacencyList){
@@ -49,7 +51,7 @@ private:
         }
         return changeHappened;
     }
-    unordered_map<int, int> bellmanFordImpl(int s) {
+    unordered_map<int, int> bellmanFordImpl(int s) const {
         unordered_map<int, int> dist;   // undefined is assumed to be INFINTIY
         dist[s] = 0;    // distance of the starting node will be zero
         int n = vertices.size();
@@ -59,7 +61,25 @@ private:
                 break;
         return dist;
     }
-    vector<int> serialize(const unordered_map<int, int> &h, int inf) {
+    unordered_map<int,unordered_map<int,int> > adjacencyMatrixImpl(int selfAdj) const {
+        unordered_map<int,unordered_map<int,int> > mat; // this'll be copy of the adjacency list itself
+        for(auto &h: adjacencyList){
+            for(auto &p: h.second){
+                mat[h.first][p.first] = p.second;
+            }
+        }
+        // TODO: Implement multi edge support
+        // change the adjacency list to have a list of distances
+        // and the matrix will be something like least weight matrix
+
+        for(int i=0; i<V; i++){
+            mat[i][i] = selfAdj;
+            // TODO: Implement self loops support
+            // this value needs to be the weight of the self loop
+        }
+        return mat;
+    }
+    vector<int> serialize(const unordered_map<int, int> &h, int inf) const {
         // assuming that no vertices are skipped when this method is triggered
         // i.e., V == vertices.size() is true
         if(V!=vertices.size()) {
@@ -72,7 +92,7 @@ private:
         }
         return v;
     }
-    vector<vector<int> > serialize(const unordered_map<int,unordered_map<int,int> > &h, int inf) {
+    vector<vector<int> > serialize(const unordered_map<int,unordered_map<int,int> > &h, int inf) const {
         // assuming that no vertices are skipped when this method is triggered
         // i.e., V == vertices.size() is true
         if(V!=vertices.size()) {
@@ -104,51 +124,23 @@ public:
             adjacencyList[to][from] = weight;
         }
     }
-    vector<vector<int> > adjacencyMatrix() {
-        // assuming that no vertices are skipped when this method is triggered
-        // i.e., V == vertices.size() is true
-        if(V!=vertices.size()) {
-            cout<<"Warning: Adjacency matrix called before all the vertices are introduced"<<endl;
-        }
-
-        // assuming no self loops and no multiple edges for the same pair of vertices
-        // assuming V is sufficiently small to form an adjacency matrix
-
-        vector<vector<int> > v(V, vector<int>(V, INF));
-
-        for(int i=0; i<V; i++){
-            v[i][i] = 0;    // assuming distace to self is zero
-            // TODO: Implement self loops support
-            // this value needs to be the weight of the self loop
-        }
-
-        int i,j;
-        for(auto &h: adjacencyList){
-            i = h.first;
-            for(auto &p: h.second){
-                j = p.first;
-                v[i][j] = p.second;
-            }
-        }
-        // TODO: Implement multi edge support
-        // change the adjacency list to have a list of distances
-        // and the matrix will be something like least weight matrix
-
-        return v;
+    vector<vector<int> > adjacencyMatrix(int selfAdjacencyDistance = 0) {
+        unordered_map<int,unordered_map<int,int> > mat = adjacencyMatrixImpl(selfAdjacencyDistance);
+        return serialize(mat, INF);
     }
 
-    vector<vector<int> > floydWarshall() {
-        vector<vector<int> > v = adjacencyMatrix();
-        floydWarshallImpl(v);
-        return v;
+    vector<vector<int> > floydWarshall() const {
+        unordered_map<int,unordered_map<int,int> > mat = adjacencyMatrixImpl(0);
+        floydWarshallImpl(mat);
+        return serialize(mat,INF);
     }
 
-    vector<int> bellmanFord(int s) {
+    vector<int> bellmanFord(int s) const {
         unordered_map<int, int> dist = bellmanFordImpl(s);
         return serialize(dist, INF);
     }
 
-    vector<int> bellmanFord(int s, bool &hasNegativeCycle) {
+    vector<int> bellmanFord(int s, bool &hasNegativeCycle) const {
         unordered_map<int, int> dist = bellmanFordImpl(s);
         hasNegativeCycle = bellmanFordSubRoutine(dist);
         return serialize(dist, INF);
@@ -167,18 +159,57 @@ void printMat(const vector<vector<int> > &v) {
     cout<<endl;
 }
 
-vector<int> f(vector<vector<int> > &v) {
+void printVec(const vector<int> &v) {
+    for(int x: v){
+        cout<<x<<'\t';
+    }
+    cout<<endl;
+}
+
+class SolutionSubRoutine {
+public:
+    virtual void precompute(const Graph &graph) {
+        // do nothing
+    }
+    virtual vector<int> ditancesFromSource(int source, const Graph &graph) {
+        return vector<int>();
+    }
+};
+
+class BellmanFordSubRoutine: public SolutionSubRoutine {
+public:
+    BellmanFordSubRoutine() {}
+    vector<int> ditancesFromSource(int source, const Graph &graph) override {
+        return graph.bellmanFord(source);
+    }
+};
+
+class FloyedWarshallSubRoutine: public SolutionSubRoutine {
+private:
+    vector<vector<int> > v;
+public:
+    FloyedWarshallSubRoutine() {}
+    void precompute(const Graph &graph) override {
+        v = graph.floydWarshall();
+    }
+    vector<int> ditancesFromSource(int source, const Graph &graph) override {
+        return v[source];
+    }
+};
+
+vector<int> fImpl(vector<vector<int> > &v, SolutionSubRoutine *routine) {
     int n = 1+v.size();
     Graph graph = new Graph(true, 1000000); // assuming INFINITY = 10^6
     for(auto p: v){
         graph.addEdge(p[0],p[1],2 - (p[1]%2));
         graph.addEdge(p[1],p[0],2 - (p[0]%2));
     }
+    routine->precompute(graph);
     
     vector<int> ans(n,0);
     vector<int> temp;
     for(int i=0; i<n; i++){
-        temp = graph.bellmanFord(i);
+        temp = routine->ditancesFromSource(i, graph);
         for(int x: temp){
             ans[i] = max(ans[i], x);
         }
@@ -186,12 +217,11 @@ vector<int> f(vector<vector<int> > &v) {
     return ans;
 }
 
-void printVec(const vector<int> &v) {
-    for(int x: v){
-        cout<<x<<'\t';
-    }
-    cout<<endl;
+vector<int> f(vector<vector<int> > &v) {
+    // return fImpl(v, new BellmanFordSubRoutine());
+    return fImpl(v, new FloyedWarshallSubRoutine());
 }
+
 
 template <class T>
 T inputImpl(ifstream &fs, T*){
