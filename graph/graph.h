@@ -69,8 +69,7 @@ private:
         }
         return mat;
     }
-    unordered_map<int, int> dijkstraImpl(int s, unordered_map<int,int> normalizingWeights) const {
-        unordered_map<int,unordered_map<int,int> > mat = normalizedAdjacencyMatrix(normalizingWeights);
+    unordered_map<int, int> dijkstraImpl(int s, unordered_map<int,unordered_map<int,int> > &normalizedMatrix) const {
         unordered_map<int, int> dist;
         priority_queue<pair<int,int> > q;
         q.push(make_pair(0,s));
@@ -86,7 +85,7 @@ private:
             x = p.second;
             d = -p.first;   // reverse negation
             dist[x] = d;
-            for(auto edge: mat[x]){
+            for(auto edge: normalizedMatrix[x]){
                 y = edge.first;
                 if(dist.find(y)!=dist.end())    continue;
                 w = -d-edge.second; // negation for min instead of max in priority queue
@@ -176,9 +175,9 @@ public:
     }
 
     vector<vector<int> > floydWarshall() const {
-        unordered_map<int,unordered_map<int,int> > mat = adjacencyMatrixImpl(0);
-        floydWarshallImpl(mat);
-        return serialize(mat,INF);
+        unordered_map<int,unordered_map<int,int> > dist = adjacencyMatrixImpl(0);
+        floydWarshallImpl(dist);
+        return serialize(dist,INF);
     }
 
     vector<int> bellmanFord(int s) const {
@@ -193,9 +192,20 @@ public:
     }
 
     vector<int> dijkstra(int s) const {
-        // Note: this has become the Johnson's algo due to normalization step addition
+        // Note: this has become the Johnson's algo's subroutine due to normalization step introduction
         unordered_map<int, int> normalizingWeights = minimumDistanceFromOuterSource();
-        unordered_map<int, int> dist = dijkstraImpl(s, normalizingWeights);
+        unordered_map<int,unordered_map<int,int> > mat = normalizedAdjacencyMatrix(normalizingWeights);
+        unordered_map<int, int> dist = dijkstraImpl(s, mat);
+        return serialize(dist, INF);
+    }
+
+    vector<vector<int> > johnson() const {
+        unordered_map<int, int> normalizingWeights = minimumDistanceFromOuterSource();
+        unordered_map<int,unordered_map<int,int> > mat = normalizedAdjacencyMatrix(normalizingWeights);
+        unordered_map<int,unordered_map<int,int> > dist;
+        for(int x: vertices){
+            dist[x] = dijkstraImpl(x, mat);
+        }
         return serialize(dist, INF);
     }
 };

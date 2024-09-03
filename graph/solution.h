@@ -30,6 +30,19 @@ public:
     }
 };
 
+class JohnsonSubRoutine: public SolutionSubRoutine {
+private:
+    vector<vector<int> > v;
+public:
+    JohnsonSubRoutine() {}
+    void precompute(const Graph &graph) override {
+        v = graph.johnson();
+    }
+    vector<int> ditancesFromSource(int source, const Graph &graph) override {
+        return v[source];
+    }
+};
+
 class FloyedWarshallSubRoutine: public SolutionSubRoutine {
 private:
     vector<vector<int> > v;
@@ -66,5 +79,6 @@ vector<int> fImpl(vector<vector<int> > &v, SolutionSubRoutine *routine) {
 vector<int> f(vector<vector<int> > &v) {
     // return fImpl(v, new BellmanFordSubRoutine());
     // return fImpl(v, new FloyedWarshallSubRoutine());
-    return fImpl(v, new DijkstraSubRoutine());
+    // return fImpl(v, new DijkstraSubRoutine());
+    return fImpl(v, new JohnsonSubRoutine());
 }
