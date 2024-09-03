@@ -151,7 +151,7 @@ T input(ifstream &fs){
 
 int main() {
     ifstream inputFile;
-    inputFile.open("input.in");
+    inputFile.open("../graph_path_algo/input.in");  // relative to the build location
     vector<vector<vector<int> > > inputs = input<vector<vector<vector<int> > > >(inputFile);
     vector<int> output;
     for(auto &v: inputs){
@@ -161,6 +161,5 @@ int main() {
     return 0;
 }
 
-// write a chat gpt summary of the code in my style in the readme file
 // implement pending methods, bellmon-ford, dijkstras, johnsons etc.
 // run it for the leetcode question
