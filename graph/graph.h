@@ -60,8 +60,17 @@ private:
                 break;
         return dist;
     }
-    unordered_map<int, int> dijkstraImpl(int s) const {
-        unordered_map<int,unordered_map<int,int> > mat = adjacencyMatrixImpl(0);
+    unordered_map<int,unordered_map<int,int> > normalizedAdjacencyMatrix(unordered_map<int,int> &normalizingWeights) const {
+        unordered_map<int,unordered_map<int,int> > mat; // this'll be copy of the adjacency list itself
+        for(auto &h: adjacencyList){
+            for(auto &p: h.second){
+                mat[h.first][p.first] = p.second + normalizingWeights[h.first] - normalizingWeights[p.first];
+            }
+        }
+        return mat;
+    }
+    unordered_map<int, int> dijkstraImpl(int s, unordered_map<int,int> normalizingWeights) const {
+        unordered_map<int,unordered_map<int,int> > mat = normalizedAdjacencyMatrix(normalizingWeights);
         unordered_map<int, int> dist;
         priority_queue<pair<int,int> > q;
         q.push(make_pair(0,s));
@@ -130,6 +139,18 @@ private:
         }
         return v;
     }
+    unordered_map<int, int>  minimumDistanceFromOuterSource() const {
+        Graph g(true, INF);
+        for(auto &h: adjacencyList){
+            for(auto &p: h.second){
+                g.addEdge(h.first, p.first, p.second);
+            }
+        }
+        for(int x: vertices){
+            g.addEdge(V,x,0);
+        }
+        return g.bellmanFordImpl(V);
+    }
 public:
     Graph(bool directedGraph = false, int infinity = INT_MAX) : isDirected(directedGraph), INF(infinity), V(0) {}
     void addEdge(int from, int to, int weight) {
@@ -172,7 +193,9 @@ public:
     }
 
     vector<int> dijkstra(int s) const {
-        unordered_map<int, int> dist = dijkstraImpl(s);
+        // Note: this has become the Johnson's algo due to normalization step addition
+        unordered_map<int, int> normalizingWeights = minimumDistanceFromOuterSource();
+        unordered_map<int, int> dist = dijkstraImpl(s, normalizingWeights);
         return serialize(dist, INF);
     }
 };
