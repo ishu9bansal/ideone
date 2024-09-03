@@ -31,6 +31,60 @@ private:
             }
         }
     }
+    bool bellmanFordSubRoutine(unordered_map<int, int> &dist) {
+        bool changeHappened = false;
+        int i, j, d;
+        for(auto &h: adjacencyList){
+            i = h.first;
+            for(auto &p: h.second){
+                j = p.first;
+                if(dist.find(i)!=dist.end()){
+                    d = dist[i] + p.second;
+                    if (dist.find(j)==dist.end() || dist[j] > d){
+                        dist[j] = d;
+                        changeHappened = true;
+                    }
+                }
+            }
+        }
+        return changeHappened;
+    }
+    unordered_map<int, int> bellmanFordImpl(int s) {
+        unordered_map<int, int> dist;   // undefined is assumed to be INFINTIY
+        dist[s] = 0;    // distance of the starting node will be zero
+        int n = vertices.size();
+        n--;    // n-1 subroutines will correctly find all the distances
+        while(n--)
+            if(!bellmanFordSubRoutine(dist))
+                break;
+        return dist;
+    }
+    vector<int> serialize(const unordered_map<int, int> &h, int inf) {
+        // assuming that no vertices are skipped when this method is triggered
+        // i.e., V == vertices.size() is true
+        if(V!=vertices.size()) {
+            cout<<"Warning: Adjacency matrix called before all the vertices are introduced"<<endl;
+        }
+
+        vector<int> v(V, inf);
+        for(auto &p: h){
+            v[p.first] = p.second;
+        }
+        return v;
+    }
+    vector<vector<int> > serialize(const unordered_map<int,unordered_map<int,int> > &h, int inf) {
+        // assuming that no vertices are skipped when this method is triggered
+        // i.e., V == vertices.size() is true
+        if(V!=vertices.size()) {
+            cout<<"Warning: Adjacency matrix called before all the vertices are introduced"<<endl;
+        }
+
+        vector<vector<int> > v(V);
+        for(auto &p: h){
+            v[p.first] = serialize(p.second, inf);
+        }
+        return v;
+    }
 public:
     Graph(bool directedGraph = false, int infinity = INT_MAX) : isDirected(directedGraph), INF(infinity), V(0) {}
     void addEdge(int from, int to, int weight) {
@@ -88,6 +142,17 @@ public:
         floydWarshallImpl(v);
         return v;
     }
+
+    vector<int> bellmanFord(int s) {
+        unordered_map<int, int> dist = bellmanFordImpl(s);
+        return serialize(dist, INF);
+    }
+
+    vector<int> bellmanFord(int s, bool &hasNegativeCycle) {
+        unordered_map<int, int> dist = bellmanFordImpl(s);
+        hasNegativeCycle = bellmanFordSubRoutine(dist);
+        return serialize(dist, INF);
+    }
 };
 
 void printMat(const vector<vector<int> > &v) {
@@ -104,16 +169,18 @@ void printMat(const vector<vector<int> > &v) {
 
 vector<int> f(vector<vector<int> > &v) {
     int n = 1+v.size();
-    Graph graph = new Graph(true, 1000000);
+    Graph graph = new Graph(true, 1000000); // assuming INFINITY = 10^6
     for(auto p: v){
         graph.addEdge(p[0],p[1],2 - (p[1]%2));
         graph.addEdge(p[1],p[0],2 - (p[0]%2));
     }
-    vector<vector<int> > minPathMatrix = graph.floydWarshall();
+    
     vector<int> ans(n,0);
+    vector<int> temp;
     for(int i=0; i<n; i++){
-        for(int j=0; j<n; j++){
-            ans[i] = max(ans[i], minPathMatrix[i][j]);
+        temp = graph.bellmanFord(i);
+        for(int x: temp){
+            ans[i] = max(ans[i], x);
         }
     }
     return ans;
@@ -168,3 +235,4 @@ int main(int argc, char* argv[]) {
 
 // implement pending methods, bellmon-ford, dijkstras, johnsons etc.
 // run it for the leetcode question
+// improve the INF handling by using unordered_map instead of vector
