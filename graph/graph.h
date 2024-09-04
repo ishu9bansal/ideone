@@ -5,6 +5,12 @@
 #include <climits>
 #include <vector>
 
+struct Tree {
+    Tree(int x): vertex(x) {}
+    int vertex;
+    vector<Tree*> children;
+};
+
 class Graph{
 private:
     long long INF;
@@ -207,5 +213,39 @@ public:
             dist[x] = dijkstraImpl(x, mat);
         }
         return serialize(dist, INF);
+    }
+
+    void checkAndPush(int vertex, unordered_map<int, Tree*> &nodeMap, queue<int> &q, Tree* parent = NULL) const {
+        if(nodeMap.find(vertex)!=nodeMap.end())  return;
+        q.push(vertex);
+        nodeMap[vertex] = new Tree(vertex);
+        if(parent)  parent->children.push_back(nodeMap[vertex]);
+    }
+    Tree* minimumSpanningTree() const {
+        unordered_map<int,unordered_set<int> > mat;
+        int maxDegreeCount = 0;
+        int root = -1;
+        for(auto &h: adjacencyList){
+            for(auto &p: h.second){
+                mat[h.first].insert(p.second);
+            }
+            if(maxDegreeCount<mat[h.first].size()){
+                maxDegreeCount = mat[h.first].size();
+                root = h.first;
+            }
+        }
+        // TODO: correct this implementation
+        unordered_map<int, Tree*> nodeMap;
+        queue<int> q;
+        checkAndPush(root, nodeMap, q);
+        int x, y;
+        while(q.size()){
+            x = q.front();
+            q.pop();
+            for(int p: mat[x]){
+                checkAndPush(p, nodeMap, q, nodeMap[x]);
+            }
+        }
+        return nodeMap[root];
     }
 };
