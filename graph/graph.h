@@ -5,12 +5,6 @@
 #include <climits>
 #include <vector>
 
-struct Tree {
-    Tree(int x): vertex(x) {}
-    int vertex;
-    vector<Tree*> children;
-};
-
 class Graph{
 private:
     long long INF;
@@ -156,6 +150,15 @@ private:
         }
         return g.bellmanFordImpl(V);
     }
+    bool makeDfsTreeFromRootImpl(int i, unordered_map<int, unordered_set<int> > &tree) const {
+        if(tree.find(i)!=tree.end())    return false;
+        tree[i] = unordered_set<int>();
+        for(const pair<int, int> &p: adjacencyList.at(i)) {
+            if(makeDfsTreeFromRootImpl(p.first,tree))
+                tree[i].insert(p.first);
+        }
+        return true;
+    }
 public:
     Graph(bool directedGraph = false, int infinity = INT_MAX) : isDirected(directedGraph), INF(infinity), V(0) {}
     void addEdge(int from, int to, int weight) {
@@ -214,38 +217,10 @@ public:
         }
         return serialize(dist, INF);
     }
-
-    void checkAndPush(int vertex, unordered_map<int, Tree*> &nodeMap, queue<int> &q, Tree* parent = NULL) const {
-        if(nodeMap.find(vertex)!=nodeMap.end())  return;
-        q.push(vertex);
-        nodeMap[vertex] = new Tree(vertex);
-        if(parent)  parent->children.push_back(nodeMap[vertex]);
-    }
-    Tree* minimumSpanningTree() const {
-        unordered_map<int,unordered_set<int> > mat;
-        int maxDegreeCount = 0;
-        int root = -1;
-        for(auto &h: adjacencyList){
-            for(auto &p: h.second){
-                mat[h.first].insert(p.second);
-            }
-            if(maxDegreeCount<mat[h.first].size()){
-                maxDegreeCount = mat[h.first].size();
-                root = h.first;
-            }
-        }
-        // TODO: correct this implementation
-        unordered_map<int, Tree*> nodeMap;
-        queue<int> q;
-        checkAndPush(root, nodeMap, q);
-        int x, y;
-        while(q.size()){
-            x = q.front();
-            q.pop();
-            for(int p: mat[x]){
-                checkAndPush(p, nodeMap, q, nodeMap[x]);
-            }
-        }
-        return nodeMap[root];
+    unordered_map<int, unordered_set<int> > makeDfsTreeFromRoot(int root) const {
+        unordered_map<int, unordered_set<int> > tree;
+        if(vertices.find(root)==vertices.end()) return tree;
+        makeDfsTreeFromRootImpl(root, tree);
+        return tree;
     }
 };
