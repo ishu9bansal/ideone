@@ -11,7 +11,7 @@ code:
 
 {% for x in page.code %}
 ```cpp
-{% include_relative {{ x }}.cpp %}
+{% include_relative {{ x }}.h %}
 ```
 {% endfor %}
 
